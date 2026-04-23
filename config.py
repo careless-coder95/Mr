@@ -1,26 +1,37 @@
 import os
 
-# Bot Token (Get from @BotFather)
-BOT_TOKEN = ""
+# 🔑 Telegram API (my.telegram.org se lo)
+API_ID = 12345678  # Tera API ID
+API_HASH = "your_api_hash_here"  # Tera API Hash
 
-# Admin User ID (Your Telegram ID)
-ADMIN_ID = 123456789  # Replace with your user ID
+# 🤖 Bot Token (@BotFather se)
+BOT_TOKEN = "your_bot_token_here"
 
-# Database
+# 👤 Admin ID (@userinfobot se lo)
+ADMIN_ID = 123456789  
+
+# 📁 Folders
 DB_NAME = "reporter.db"
-
-# Sessions directory
 SESSIONS_DIR = "sessions"
 
-# Rate limiting
-REPORT_DELAY = 6  # seconds between reports per session
-MAX_REPORTS_PER_ID = 3  # max reports per 10 seconds per ID
+# ⚙️ Evasion Settings
+REPORT_DELAY = 8  # Average delay
+MIN_DELAY = 6
+MAX_DELAY = 15
+MSG_HISTORY_DEPTH = 10
+MAX_MSG_IDS_PER_TARGET = 20
 
-# Reporting reasons
+# 🛡️ Proxies (optional - ban faster)
+PROXIES = [
+    # "socks5://user:pass@ip:port",
+    # Add your proxies
+]
+
+# 📝 Report Reasons
 REPORT_REASONS = {
-    "Hate Speech": "This content promotes hate speech, discrimination, or violence against individuals or groups, violating Telegram Terms of Service.",
-    "Copyright Violation": "This content infringes on copyrighted material or intellectual property rights without authorization.",
-    "Scam/Fraud": "This content is associated with fraudulent activity, phishing, or deceptive practices intended to exploit users financially.",
-    "Child Abuse": "This content involves child sexual abuse material or exploitation, which is strictly illegal and prohibited.",
-    "Pornography/Adult Content": "This content contains explicit adult material shared without proper consent or in violation of platform policies."
+    "Hate Speech": "Promotes violence/discrimination against groups/individuals violating ToS.",
+    "Copyright Violation": "Infringes copyrighted material/IP without authorization.",
+    "Scam/Fraud": "Phishing/scam content designed to exploit users financially.",
+    "Child Abuse": "Child sexual abuse material - STRICTLY PROHIBITED.",
+    "Pornography/Adult Content": "Explicit adult content violating platform guidelines."
 }
