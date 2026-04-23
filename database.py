@@ -1,5 +1,4 @@
 import sqlite3
-import os
 from typing import List, Dict, Optional
 
 class Database:
@@ -11,7 +10,6 @@ class Database:
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
         
-        # Sessions table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS sessions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,7 +18,6 @@ class Database:
             )
         ''')
         
-        # Targets table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS targets (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +45,7 @@ class Database:
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
         cursor.execute("SELECT id, session_string FROM sessions")
-        sessions = [{"id": row[0], "session": row[1]} for row in cursor.fetchall()]
+        sessions = [{"id": row[0], "session_string": row[1]} for row in cursor.fetchall()]
         conn.close()
         return sessions
     
@@ -56,9 +53,10 @@ class Database:
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
         cursor.execute("DELETE FROM sessions WHERE id = ?", (session_id,))
+        result = cursor.rowcount > 0
         conn.commit()
         conn.close()
-        return cursor.rowcount > 0
+        return result
     
     def get_session_count(self) -> int:
         conn = sqlite3.connect(self.db_name)
@@ -71,7 +69,7 @@ class Database:
     def set_target(self, target_data: str, target_type: str) -> bool:
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM targets")  # Only one target at a time
+        cursor.execute("DELETE FROM targets")
         cursor.execute("INSERT INTO targets (target_data, target_type) VALUES (?, ?)", 
                       (target_data, target_type))
         conn.commit()
@@ -87,11 +85,3 @@ class Database:
         if result:
             return {"data": result[0], "type": result[1]}
         return None
-    
-    def clear_target(self) -> bool:
-        conn = sqlite3.connect(self.db_name)
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM targets")
-        conn.commit()
-        conn.close()
-        return True
