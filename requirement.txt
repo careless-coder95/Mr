@@ -1,0 +1,5 @@
+pyrogram==2.0.106
+TgCrypto==1.2.5
+sqlite3
+aiofiles==23.2.1
+asyncio
