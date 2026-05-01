@@ -11,7 +11,7 @@ async def cb_list_accounts(client: Client, callback: CallbackQuery):
     if not accounts:
         await callback.message.edit_text(
             "<blockquote>"
-            "📂 <b>Accounts</b>\n\n"
+            "📂 <b><u>Accounts</u></b>\n\n"
             "❌ No account is saved.\n"
             "➕ Add an account first "
             "</blockquote>",
@@ -23,7 +23,7 @@ async def cb_list_accounts(client: Client, callback: CallbackQuery):
     phones = list(accounts.keys())
     await callback.message.edit_text(
         f"<blockquote>"
-        "📂 <b>Your Saved Accounts</b> ({len(phones)})\n\n"
+        "📂 <b><u>Your Saved Accounts</u></b>\n\n"
         "Click on any account to view details:"
         "</blockquote>",
         parse_mode=ParseMode.HTML,
@@ -44,7 +44,7 @@ async def cb_account_detail(client: Client, callback: CallbackQuery):
 
     await callback.message.edit_text(
         f"<blockquote>"
-        f"📱 <b>Account Details</b>\n\n"
+        f"📱 <b><u>Account Details</u></b>\n\n"
         f"📱 Number: `{acc['phone']}`\n"
         f"🔑 2FA: {password_display}\n"
         f"🔒 Session: Saved ✅"
@@ -66,7 +66,7 @@ async def cb_delete_account(client: Client, callback: CallbackQuery):
     if not phones:
         await callback.message.edit_text(
             "<blockquote>"
-            "📂 <b>Your Accounts</b>\n\n"
+            "📂 <b><u>Your Accounts</u></b>\n\n"
             "❌ No account left."
             "</blockquote>",
             parse_mode=ParseMode.HTML,
