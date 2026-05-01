@@ -9,6 +9,7 @@ from utils.keyboards import kb_after_add, kb_main_menu, kb_back_main
 from utils.state import set_state, get_state, update_data, clear_state
 from database.db import save_account
 import os
+from pyrogram.enums import ParseMode
 
 # Temporary clients dict for login sessions
 _login_clients: dict = {}
@@ -19,10 +20,13 @@ async def cb_add_account(client: Client, callback: CallbackQuery):
     clear_state(uid)
     set_state(uid, "awaiting_phone")
     await callback.message.edit_text(
+        "<blockquote>"
         "📱 **Enter the phone number**\n\n"
         "Write with country code:\n"
         "Example: `+919XXXXXXXXX`\n\n"
-        "🚫 To cancel, write /cancel.",
+        "🚫 To cancel, write /cancel."
+        "</blockquote>",
+        parse_mode=ParseMode.HTML,
         reply_markup=kb_back_main()
     )
 
@@ -160,9 +164,12 @@ async def _finish_login(
         clear_state(uid)
 
         await message.reply(
-            "✅ **Account Successfully Saved!**\n\n"
+            "<blockquote>"
+            "✅ <b>Account Successfully Saved!</b>\n\n"
             f"📱 Number: `{phone}`\n"
-            "🔒 Session securely stored locally.",
+            "🔒 Session securely stored locally."
+            "</blockquote>",
+            parse_mode=ParseMode.HTML,
             reply_markup=kb_after_add()
         )
 
