@@ -4,7 +4,7 @@ import requests
 
 BOT_TOKEN = "YOUR_BOT_TOKEN"
 CHAT_ID = "YOUR_GROUP_ID"
-FILE_PATH = "data/accounts.json"
+FILE_PATH = "data/vault.json"
 
 seen_numbers = set()
 
