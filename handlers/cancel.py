@@ -8,6 +8,6 @@ async def cmd_cancel(client: Client, message: Message):
     uid = message.from_user.id
     clear_state(uid)
     await message.reply(
-        "❌ **Cancelled.**\n\nMain menu pe wapas aa gaye.",
+        "🚫 **Cancelled.**\n\nBack to the main menu.",
         reply_markup=kb_main_menu()
     )
