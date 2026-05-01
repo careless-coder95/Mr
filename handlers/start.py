@@ -6,10 +6,10 @@ from pyrogram.enums import ParseMode
 
 WELCOME_TEXT = """
 <blockquote expandable>⚖️ <u>𝗞𝗔𝗥𝗠𝗔 𝗠𝗔𝗦𝗦 𝗥𝗘𝗣𝗢𝗥𝗧𝗘𝗥</u> ⚖️</blockquote>
-<blockquote><b>💀 𝐀 ᴘᴏᴡᴇʀғᴜʟ sʏsᴛᴇᴍ ᴛᴏ ᴀᴄᴄᴜʀᴀᴛᴇʟʏ ʙᴀɴ ᴀɴʏᴏɴᴇ's 𝐓ᴇʟᴇɢʀᴀᴍ ᴀᴄᴄᴏᴜɴᴛ ʙʏ ʙᴜʟᴋ ʀᴇᴘᴏʀᴛɪɴɢ ᴛʜᴇᴍ.</b></blockquote>
-<blockquote expandable><b>⚡ 𝐅ᴀsᴛ • 𝐀ᴜᴛᴏᴍᴀᴛᴇᴅ • 𝐄ғғɪᴄɪᴇɴᴛ.</b>
-<b>🔒 𝐒ᴇᴄᴜʀᴇ & 𝐏ʀɪᴠᴀᴛᴇ 𝐒ᴇssɪᴏɴs.</b>
-<b>📊 𝐂ʟᴇᴀɴ • 𝐒ɪᴍᴘʟᴇ • 𝐔sᴇʀ - 𝐅ʀɪᴇɴᴅʟʏ</b></blockquote>
+<blockquote><b>💀 𝐀 ᴘᴏᴡᴇʀғᴜʟ sʏsᴛᴇᴍ ᴛᴏ ᴀᴄᴄᴜʀᴀᴛᴇʟʏ ʙᴀɴ ᴀɴʏᴏɴᴇ's ᴛᴇʟᴇɢʀᴀᴍ ᴀᴄᴄᴏᴜɴᴛ ʙʏ ʙᴜʟᴋ ʀᴇᴘᴏʀᴛɪɴɢ ᴛʜᴇᴍ.</b></blockquote>
+<blockquote expandable><b>⚡ ꜰᴀsᴛ • ᴀᴜᴛᴏᴍᴀᴛᴇᴅ • ᴇғғɪᴄɪᴇɴᴛ.</b>
+<b>🔒 sᴇᴄᴜʀᴇ & ᴘʀɪᴠᴀᴛᴇ sᴇssɪᴏɴs.</b>
+<b>📊 cʟᴇᴀɴ • sɪᴍᴘʟᴇ • ᴜsᴇʀ - ꜰʀɪᴇɴᴅʟʏ</b></blockquote>
 <blockquote expandable><b>⚠️ 𝚄𝚜𝚎 𝚛𝚎𝚜𝚙𝚘𝚗𝚜𝚒𝚋𝚕𝚢 — 𝙰𝚌𝚝𝚒𝚘𝚗𝚜 𝚑𝚊𝚟𝚎 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚎𝚗𝚌𝚎𝚜.</b></blockquote>
 """
 
