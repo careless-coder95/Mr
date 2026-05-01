@@ -24,7 +24,7 @@ async def cmd_start(client: Client, message: Message):
     clear_state(message.from_user.id)
     
     await message.reply_photo(
-        photo="assets/start.jpg",  
+        photo="assets/karma.jpg",  
         caption=WELCOME_TEXT,
         parse_mode=ParseMode.HTML,
         reply_markup=kb_start()
