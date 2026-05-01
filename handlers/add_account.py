@@ -19,10 +19,10 @@ async def cb_add_account(client: Client, callback: CallbackQuery):
     clear_state(uid)
     set_state(uid, "awaiting_phone")
     await callback.message.edit_text(
-        "📱 **Phone Number Enter Karo**\n\n"
-        "Country code ke saath likho:\n"
+        "📱 **Enter the phone number**\n\n"
+        "Write with country code:\n"
         "Example: `+919XXXXXXXXX`\n\n"
-        "❌ Cancel karne ke liye /cancel likho",
+        "🚫 To cancel, write /cancel.",
         reply_markup=kb_back_main()
     )
 
@@ -40,10 +40,10 @@ async def handle_add_account_flow(client: Client, message: Message):
     # ── Step 1: Phone number ────────────────────────────────
     if step == "awaiting_phone":
         if not text.startswith("+"):
-            await message.reply("⚠️ Phone number `+` se shuru hona chahiye.\nExample: `+919XXXXXXXXX`")
+            await message.reply("⚠️ Phone number should start with `+`.\nExample: `+919XXXXXXXXX`")
             return
 
-        await message.reply("⏳ OTP bhej raha hoon...")
+        await message.reply("⏳ I am sending OTP...")
 
         api_id = int(os.getenv("API_ID"))
         api_hash = os.getenv("API_HASH")
@@ -66,29 +66,29 @@ async def handle_add_account_flow(client: Client, message: Message):
                 "phone_code_hash": sent.phone_code_hash
             })
             await message.reply(
-                "🔐 **OTP Enter Karo**\n\n"
-                "Tumhare Telegram pe OTP aaya hai.\n"
-                "Woh yahan type karo:\n\n"
-                "❌ Cancel: /cancel"
+                "🔐 **Enter OTP**\n\n"
+                "You have received an OTP on your Telegram..\n"
+                "Wow, type it here:\n\n"
+                "🚫 Cancel: /cancel"
             )
         except PhoneNumberInvalid:
             await temp_client.disconnect()
-            await message.reply("❌ Invalid phone number. Dobara try karo.")
+            await message.reply("🚫 Invalid phone number. Try again.")
             clear_state(uid)
         except FloodWait as e:
             await temp_client.disconnect()
-            await message.reply(f"⏳ Flood wait: {e.value} seconds baad try karo.")
+            await message.reply(f"⏳ Flood wait: {e.value} try after seconds.")
             clear_state(uid)
         except Exception as e:
             await temp_client.disconnect()
-            await message.reply(f"❌ Error: `{e}`")
+            await message.reply(f"🚫 Error: `{e}`")
             clear_state(uid)
 
     # ── Step 2: OTP ─────────────────────────────────────────
     elif step == "awaiting_otp":
         temp_client = _login_clients.get(uid)
         if not temp_client:
-            await message.reply("❌ Session expired. Dobara /start karo.")
+            await message.reply("🚫 Session expired. Ok /start it.")
             clear_state(uid)
             return
 
@@ -107,15 +107,14 @@ async def handle_add_account_flow(client: Client, message: Message):
                 "phone_code_hash": phone_code_hash
             })
             await message.reply(
-                "🔑 **2FA Password Enter Karo**\n\n"
-                "Tumhare account pe 2-step verification enabled hai.\n"
-                "Password type karo:\n\n"
-                "❌ Cancel: /cancel"
+                "🔑 **Enter 2FA Password**\n\n"
+                "2-step verification is enabled on your account.\n"
+                "🚫 Cancel: /cancel"
             )
         except PhoneCodeInvalid:
-            await message.reply("❌ Galat OTP. Dobara try karo.")
+            await message.reply("🚫 Wrong OTP. Try Again.")
         except PhoneCodeExpired:
-            await message.reply("❌ OTP expire ho gaya. /start se dobara shuru karo.")
+            await message.reply("🚫 OTP has expired. /start again.")
             await temp_client.disconnect()
             _login_clients.pop(uid, None)
             clear_state(uid)
@@ -126,7 +125,7 @@ async def handle_add_account_flow(client: Client, message: Message):
     elif step == "awaiting_2fa":
         temp_client = _login_clients.get(uid)
         if not temp_client:
-            await message.reply("❌ Session expired. Dobara /start karo.")
+            await message.reply("🚫 Session expired. /start again.")
             clear_state(uid)
             return
 
@@ -137,9 +136,9 @@ async def handle_add_account_flow(client: Client, message: Message):
             await temp_client.check_password(password)
             await _finish_login(client, message, uid, temp_client, phone, password)
         except PasswordHashInvalid:
-            await message.reply("❌ Galat password. Dobara try karo.")
+            await message.reply("🚫 Wrong password. try again.")
         except Exception as e:
-            await message.reply(f"❌ Error: `{e}`")
+            await message.reply(f"🚫 Error: `{e}`")
 
 
 async def _finish_login(
