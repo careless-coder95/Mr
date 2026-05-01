@@ -3,7 +3,7 @@ from pyrogram.types import Message, CallbackQuery
 from utils.keyboards import kb_target_menu, kb_target_save, kb_back_main
 from utils.state import set_state, get_state, update_data, clear_state
 from database.db import save_target, get_target, delete_target
-
+from pyrogram.enums import ParseMode
 
 async def cb_target_menu(client: Client, callback: CallbackQuery):
     target = get_target()
@@ -31,10 +31,13 @@ async def cb_set_target(client: Client, callback: CallbackQuery):
     uid = callback.from_user.id
     set_state(uid, "awaiting_target_input")
     await callback.message.edit_text(
-        "🔍 **Target Set Karo**\n\n"
+        "<blockquote>"
+        "🔍 <b><u>Set Your Target</u></b>\n\n"
         "Enter username:\n"
-        "Example: `@username` \n\n"
-        "🚫 Cancel: /cancel",
+        "Example: <code>@username</code> \n\n"
+        "🚫 Cancel: /cancel"
+        "</blockquote>",
+        parse_mode=ParseMode.HTML,
         reply_markup=kb_back_main()
     )
 
@@ -59,11 +62,14 @@ async def handle_target_flow(client: Client, message: Message):
         set_state(uid, "confirm_target", data={"target_info": info})
 
         await message.reply(
-            f"👤 **User Found!**\n\n"
+            "<blockquote>"
+            f"👤 <b>User Found!<b>\n\n"
             f"👤 Name: {full_name}\n"
             f"🆔 User ID: `{user.id}`\n"
             f"🔗 Username: @{user.username or 'N/A'}\n\n"
-            "Do you want to save your target with this?",
+            "Do you want to save your target with this?"
+            "</blockquote>",
+            parse_mode=ParseMode.HTML,
             reply_markup=kb_target_save()
         )
     except Exception as e:
