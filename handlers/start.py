@@ -22,8 +22,10 @@ Kya karna chahte ho?
 
 async def cmd_start(client: Client, message: Message):
     clear_state(message.from_user.id)
-    await message.reply_text(
-        WELCOME_TEXT,
+    
+    await message.reply_photo(
+        photo="",  
+        caption=WELCOME_TEXT,
         reply_markup=kb_start()
     )
 
