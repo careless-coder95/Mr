@@ -14,9 +14,9 @@ WELCOME_TEXT = """
 """
 
 MAIN_MENU_TEXT = """
-🏠 **Main Menu**
-
-Kya karna chahte ho?
+<blockquote expandable><b>❖ <u>𝙼𝙴𝚃𝙷𝙾𝙳 𝙾𝙵 𝚁𝙴𝙿𝙾𝚃𝙸𝙽𝙶</u> :</b></blockquote>
+<blockquote expandable><b>➥ 𝐅ɪʀsᴛ, ᴀᴅᴅ ᴀ ᴍɪɴɪᴍᴜᴍ ᴏғ 10 ᴀᴄᴄᴏᴜɴᴛs.</b>
+<b>➥ 𝐓ʜᴇɴ sᴇʟᴇᴄᴛ ʏᴏᴜʀ ᴛᴀʀɢᴇᴛ ᴀɴᴅ sᴛᴀʀᴛ ʀᴇᴘᴏʀᴛɪɴɢ.</b></blockquote>
 """
 
 
@@ -35,5 +35,6 @@ async def cb_main_menu(client: Client, callback: CallbackQuery):
     clear_state(callback.from_user.id)
     await callback.message.edit_text(
         MAIN_MENU_TEXT,
+        parse_mode=ParseMode.HTML,
         reply_markup=kb_main_menu()
     )
