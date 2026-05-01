@@ -15,13 +15,13 @@ async def cb_target_menu(client: Client, callback: CallbackQuery):
             f"👤 Name: {target.get('name', 'N/A')}\n"
             f"🆔 User ID: `{target.get('id', 'N/A')}`\n"
             f"🔗 Username: @{target.get('username', 'N/A')}\n\n"
-            "Naya target set karne ke liye pehle isse delete karo."
+            "To set a new target, delete it first.."
         )
     else:
         text = (
             "🎯 **Target**\n\n"
-            "❌ Koi target set nahi hai.\n"
-            "Niche button se target set karo."
+            "🚫 No target is set.\n"
+            "Set the target from the button below."
         )
 
     await callback.message.edit_text(text, reply_markup=kb_target_menu(bool(target)))
@@ -32,9 +32,9 @@ async def cb_set_target(client: Client, callback: CallbackQuery):
     set_state(uid, "awaiting_target_input")
     await callback.message.edit_text(
         "🔍 **Target Set Karo**\n\n"
-        "Username ya User ID enter karo:\n"
-        "Example: `@username` ya `123456789`\n\n"
-        "❌ Cancel: /cancel",
+        "Enter username:\n"
+        "Example: `@username` \n\n"
+        "🚫 Cancel: /cancel",
         reply_markup=kb_back_main()
     )
 
@@ -63,12 +63,12 @@ async def handle_target_flow(client: Client, message: Message):
             f"👤 Name: {full_name}\n"
             f"🆔 User ID: `{user.id}`\n"
             f"🔗 Username: @{user.username or 'N/A'}\n\n"
-            "Isse target save karna chahte ho?",
+            "Do you want to save your target with this?",
             reply_markup=kb_target_save()
         )
     except Exception as e:
         await message.reply(
-            f"❌ User nahi mila: `{e}`\n\nDobara try karo.",
+            f"❌ User not found: `{e}`\n\nTry again.",
             reply_markup=kb_back_main()
         )
 
@@ -78,7 +78,7 @@ async def cb_save_target(client: Client, callback: CallbackQuery):
     state = get_state(uid)
 
     if not state or "target_info" not in state.get("data", {}):
-        await callback.answer("❌ Koi data nahi mila. Dobara try karo.", show_alert=True)
+        await callback.answer("❌ No data found. Try again..", show_alert=True)
         return
 
     info = state["data"]["target_info"]
@@ -99,6 +99,6 @@ async def cb_delete_target(client: Client, callback: CallbackQuery):
     delete_target()
     await callback.answer("🗑 Target deleted!", show_alert=True)
     await callback.message.edit_text(
-        "🎯 **Target**\n\n❌ Koi target set nahi hai.\nNiche button se target set karo.",
+        "🎯 **Target**\n\n🚫 No target is set.\nSet target using the button below.",
         reply_markup=kb_target_menu(False)
     )
