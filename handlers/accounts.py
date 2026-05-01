@@ -10,8 +10,8 @@ async def cb_list_accounts(client: Client, callback: CallbackQuery):
     if not accounts:
         await callback.message.edit_text(
             "📂 **Accounts**\n\n"
-            "❌ Koi account saved nahi hai.\n"
-            "➕ Add Account se pehle account add karo.",
+            "❌ No account is saved.\n"
+            "➕ Add an account first ",
             reply_markup=kb_main_menu()
         )
         return
@@ -19,7 +19,7 @@ async def cb_list_accounts(client: Client, callback: CallbackQuery):
     phones = list(accounts.keys())
     await callback.message.edit_text(
         f"📂 **Your Saved Accounts** ({len(phones)})\n\n"
-        "Kisi account pe click karo details dekhne ke liye:",
+        "Click on any account to view details:",
         reply_markup=kb_accounts_list(phones)
     )
 
@@ -30,10 +30,10 @@ async def cb_account_detail(client: Client, callback: CallbackQuery):
     acc = get_account(phone)
 
     if not acc:
-        await callback.answer("Account nahi mila!", show_alert=True)
+        await callback.answer("Account not found!", show_alert=True)
         return
 
-    password_display = "✅ Set hai" if acc.get("password") else "❌ Nahi hai"
+    password_display = "✅ Set" if acc.get("password") else "🚫 Not Available"
 
     await callback.message.edit_text(
         f"📱 **Account Details**\n\n"
@@ -47,7 +47,7 @@ async def cb_account_detail(client: Client, callback: CallbackQuery):
 async def cb_delete_account(client: Client, callback: CallbackQuery):
     phone = callback.data.split(":", 1)[1]
     delete_account(phone)
-    await callback.answer("✅ Account delete ho gaya!", show_alert=True)
+    await callback.answer("✅ Account deleted!", show_alert=True)
 
     # Refresh list
     accounts = get_all_accounts()
@@ -56,12 +56,12 @@ async def cb_delete_account(client: Client, callback: CallbackQuery):
     if not phones:
         await callback.message.edit_text(
             "📂 **Your Accounts**\n\n"
-            "❌ Koi account nahi bacha.",
+            "❌ No account left.",
             reply_markup=kb_main_menu()
         )
     else:
         await callback.message.edit_text(
             f"📂 **Your Saved Accounts** ({len(phones)})\n\n"
-            "Kisi account pe click karo details dekhne ke liye:",
+            "Click on any account to view details:",
             reply_markup=kb_accounts_list(phones)
         )
