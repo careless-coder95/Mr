@@ -23,7 +23,7 @@ async def cb_start_love(client: Client, callback: CallbackQuery):
     acc_count = count_accounts()
 
     if acc_count == 0:
-        await callback.answer("❌ Pehle koi account add karo!", show_alert=True)
+        await callback.answer("🚫 First add an account!", show_alert=True)
         return
 
     clear_state(uid)
@@ -31,9 +31,9 @@ async def cb_start_love(client: Client, callback: CallbackQuery):
 
     await callback.message.edit_text(
         "❤️ **Start Love**\n\n"
-        "💬 Love ka reason kya hai?\n\n"
-        "Examples: `Propose`, `Hate`, `Marry`, `Friendship`\n\n"
-        "❌ Cancel: /cancel",
+        "💬 what is the reason for love?\n\n"
+        "**Examples:** `Spam`, `Fake Account`, `Spam`, `Voilance`, `Child Abuse`, `Pornography`, `Other`\n\n"
+        "🚫 Cancel: /cancel",
         reply_markup=kb_back_main()
     )
 
@@ -55,15 +55,15 @@ async def handle_love_flow(client: Client, message: Message):
 
         await message.reply(
             f"✅ Reason accepted: **{text}**\n\n"
-            "❤️ **Kitni baar love karna chahte ho?**\n\n"
-            "Ek number enter karo (jaise: `6`):\n\n"
-            "❌ Cancel: /cancel"
+            "❤️ **how many times do you want to make love?**\n\n"
+            "Enter a number (e.g. `10`):\n\n"
+            "🚫 Cancel: /cancel"
         )
 
     # ── Step 2: Count ────────────────────────────────────────
     elif step == "awaiting_love_count":
         if not text.isdigit() or int(text) <= 0:
-            await message.reply("⚠️ Sirf positive number enter karo. Jaise: `5`")
+            await message.reply("⚠️ Just enter the positive number. Like: `5`")
             return
 
         count = int(text)
