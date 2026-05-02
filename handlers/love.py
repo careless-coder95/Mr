@@ -34,7 +34,7 @@ async def cb_start_love(client: Client, callback: CallbackQuery):
         "<blockquote>"
         "❤️ <u>𝗦𝗧𝗔𝗥𝗧 𝗟𝗢𝗩𝗘</u>\n"
         "<b>💬 what is the reason for love?</b>\n\n"
-        "<b>Examples:</b> `Spam`, `Fake Account`, `Spam`, `Voilance`, `Child Abuse`, `Pornography`, `Other`\n\n"
+        "<b>Examples:</b> <code>Spam</code>, <code>Fake Account</code>, <code>Voilance</code>, <code>Child Abuse</code>, <code>Pornography</code>, <code>Other</code>\n\n"
         "<b>🚫 Cancel:</b> /cancel"
         "</blockquote>",,
         parse_mode=ParseMode.HTML,
@@ -58,10 +58,10 @@ async def handle_love_flow(client: Client, message: Message):
         set_state(uid, "awaiting_love_count", data={"reason": text})
 
         await message.reply(
-            f"✅ Reason accepted: **{text}**\n\n"
-            "❤️ **how many times do you want to make love?**\n\n"
-            "Enter a number (e.g. `10`):\n\n"
-            "🚫 Cancel: /cancel"
+            f"<b>✅ Reason accepted:</b> <b>{text}</b>\n\n"
+            "<b>❤️ how many times do you want to make love?</b>\n\n"
+            "<b>Enter a number</b> (e.g. <code>10</code>):\n\n"
+            "<b>🚫 Cancel:</b> /cancel"
         )
 
     # ── Step 2: Count ────────────────────────────────────────
@@ -77,10 +77,10 @@ async def handle_love_flow(client: Client, message: Message):
 
         # Start printing love messages
         status_msg = await message.reply(
-            f"❤️ **Love Starting...**\n\n"
-            f"💬 Reason: **{reason}**\n"
-            f"🔢 Count: **{count}**\n"
-            f"📱 Accounts: **{acc_count}**\n\n"
+            f"<b>❤️ Love Starting...</b>\n\n"
+            f"<b>💬 Reason: {reason}</b>\n"
+            f"<b>🔢 Count: {count}</b>\n"
+            f"<b>📱 Accounts: {acc_count}</b>\n\n"
             "─────────────────────"
         )
 
