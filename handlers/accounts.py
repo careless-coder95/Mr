@@ -6,8 +6,8 @@ from database.db import get_all_accounts, delete_account
 
 
 async def cb_list_accounts(client: Client, callback: CallbackQuery):
-    accounts = get_all_accounts()
-
+    accounts = get_all_accounts(callback.from_user.id)
+    
     if not accounts:
         await callback.message.edit_text(
             "<blockquote>"
