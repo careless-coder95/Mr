@@ -21,7 +21,7 @@ def get_ordinal(n: int) -> str:
 
 async def cb_start_love(client: Client, callback: CallbackQuery):
     uid = callback.from_user.id
-    acc_count = count_accounts()
+    acc_count = count_accounts(callback.from_user.id)
 
     if acc_count == 0:
         await callback.answer("🚫 First add an account!", show_alert=True)
