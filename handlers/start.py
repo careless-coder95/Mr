@@ -45,15 +45,15 @@ async def cb_main_menu(client: Client, callback: CallbackQuery):
 SETUP_GUIDE_TEXT = """
 <blockquote expandable>📘 <u>𝗨𝗦𝗔𝗚𝗘 𝗚𝗨𝗜𝗗𝗘</u> :</blockquote>
 
-<blockquote>1️⃣ 𝗔𝗗𝗗 𝗔𝗖𝗖𝗢𝗨𝗡𝗧𝗦
+<blockquote>1️⃣ <u>𝗔𝗗𝗗 𝗔𝗖𝗖𝗢𝗨𝗡𝗧𝗦</u>
 <b>➤ Add multiple active accounts to ensure better coverage and efficiency.</b></blockquote>
-<blockquote>2️⃣ 𝗣𝗥𝗘𝗣𝗔𝗥𝗘 𝗘𝗡𝗩𝗜𝗥𝗢𝗡𝗠𝗘𝗡𝗧  
+<blockquote>2️⃣ <u>𝗣𝗥𝗘𝗣𝗔𝗥𝗘 𝗘𝗡𝗩𝗜𝗥𝗢𝗡𝗠𝗘𝗡𝗧</u>
 <b>➤ Create at least 6-7 public groups from all your IDs. </b></blockquote>
-<blockquote>3️⃣ 𝗦𝗘𝗟𝗘𝗖𝗧 𝗧𝗔𝗥𝗚𝗘𝗧
+<blockquote>3️⃣ <u>𝗦𝗘𝗟𝗘𝗖𝗧 𝗧𝗔𝗥𝗚𝗘𝗧</u>
 <b>➤ Choose the content or profile that requires reporting.</b></blockquote>
-<blockquote>4️⃣ 𝗖𝗛𝗢𝗢𝗦𝗘 𝗥𝗘𝗔𝗦𝗢𝗡
+<blockquote>4️⃣ <u>𝗖𝗛𝗢𝗢𝗦𝗘 𝗥𝗘𝗔𝗦𝗢𝗡</u>
 <b>➤ Select an appropriate and valid reason for the report.</b></blockquote>
-<blockquote>5️⃣ 𝗦𝗧𝗔𝗥𝗧 𝗣𝗥𝗢𝗖𝗘𝗦𝗦  
+<blockquote>5️⃣ <u>𝗦𝗧𝗔𝗥𝗧 𝗣𝗥𝗢𝗖𝗘𝗦𝗦</u>
 <b>➤ Initiate reporting and monitor progress from the dashboard.</b></blockquote>
 
 <b><i>🚀 Stay safe and use wisely.</i></b>
