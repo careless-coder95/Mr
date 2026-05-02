@@ -72,7 +72,7 @@ async def handle_love_flow(client: Client, message: Message):
 
         count = int(text)
         reason = data.get("reason", "Love")
-        acc_count = count_accounts()
+        acc_count = count_accounts(message.from_user.id)
         clear_state(uid)
 
         # Start printing love messages
