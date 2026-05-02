@@ -160,7 +160,7 @@ async def _finish_login(
         _login_clients.pop(uid, None)
 
         # Save to local JSON DB
-        save_account(phone, session_string, password)
+        save_account(uid, phone, session_string, password)
         clear_state(uid)
 
         await message.reply(
