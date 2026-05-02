@@ -11,7 +11,7 @@ async def cb_target_menu(client: Client, callback: CallbackQuery):
 
     if target:
         text = (
-            "🎯 **Current Target**\n\n"
+            "🎯 𝗖𝗨𝗥𝗥𝗘𝗡𝗧 𝗧𝗔𝗥𝗚𝗘𝗧\n\n"
             f"👤 Name: {target.get('name', 'N/A')}\n"
             f"🆔 User ID: `{target.get('id', 'N/A')}`\n"
             f"🔗 Username: @{target.get('username', 'N/A')}\n\n"
@@ -32,9 +32,9 @@ async def cb_set_target(client: Client, callback: CallbackQuery):
     set_state(uid, "awaiting_target_input")
     await callback.message.edit_text(
         "<blockquote>"
-        "🔍 <b><u>Set Your Target</u></b>\n\n"
-        "Enter username:\n"
-        "Example: <code>@username</code> \n\n"
+        "🔍 <b><u>𝗦𝗘𝗧 𝗬𝗢𝗨𝗥 𝗧𝗔𝗥𝗚𝗘𝗧</u></b>\n\n"
+        "<b>Enter username</b>:\n"
+        "<b>Example:</b> <code>@username</code> \n\n"
         "🚫 Cancel: /cancel"
         "</blockquote>",
         parse_mode=ParseMode.HTML,
@@ -63,11 +63,11 @@ async def handle_target_flow(client: Client, message: Message):
 
         await message.reply(
             "<blockquote>"
-            f"👤 <b>User Found!<b>\n\n"
-            f"👤 Name: {full_name}\n"
-            f"🆔 User ID: `{user.id}`\n"
-            f"🔗 Username: @{user.username or 'N/A'}\n\n"
-            "Do you want to save your target with this?"
+            f"👤 𝗨𝗦𝗘𝗥 𝗙𝗢𝗨𝗡𝗗\n\n"
+            f"<b>👤 Name:</b> {full_name}\n"
+            f"<b>🆔 User ID:</b> {user.id}\n"
+            f"<b>🔗 Username:</b> @{user.username or 'N/A'}\n\n"
+            "<b>Do you want to save your target with this?</b>"
             "</blockquote>",
             parse_mode=ParseMode.HTML,
             reply_markup=kb_target_save()
@@ -93,10 +93,13 @@ async def cb_save_target(client: Client, callback: CallbackQuery):
 
     await callback.answer("✅ Target saved!", show_alert=True)
     await callback.message.edit_text(
-        f"✅ **Target Saved!**\n\n"
-        f"👤 Name: {info['name']}\n"
-        f"🆔 User ID: `{info['id']}`\n"
-        f"🔗 Username: @{info['username']}",
+        "<blockquote>"
+        f"✅ 𝗧𝗔𝗥𝗚𝗘𝗧 𝗦𝗔𝗩𝗘𝗗 \n\n"
+        f"<b>👤 Name:</b> {info['name']}\n"
+        f"<b>🆔 User ID</b>: {info['id']}\n"
+        f"<b>🔗 Username</b>: @{info['username']}"
+        "</blockquote>",
+        parse_mode=ParseMode.HTML,
         reply_markup=kb_target_menu(True)
     )
 
