@@ -11,9 +11,9 @@ async def cb_list_accounts(client: Client, callback: CallbackQuery):
     if not accounts:
         await callback.message.edit_text(
             "<blockquote>"
-            "📂 <b><u>Accounts</u></b>\n\n"
-            "❌ No account is saved.\n"
-            "➕ Add an account first "
+            "📂 <u>𝗔𝗖𝗖𝗢𝗨𝗡𝗧𝗦 </u>\n\n"
+            "<b>🚫 No account is saved.</b>\n"
+            "<b>➕ Add an account first</b> "
             "</blockquote>",
             parse_mode=ParseMode.HTML,
             reply_markup=kb_main_menu()
@@ -23,8 +23,8 @@ async def cb_list_accounts(client: Client, callback: CallbackQuery):
     phones = list(accounts.keys())
     await callback.message.edit_text(
         f"<blockquote>"
-        "📂 <b><u>Your Saved Accounts</u></b>\n\n"
-        "Click on any account to view details:"
+        "📂 <b><u>𝗬𝗼𝘂𝗿 𝗦𝗮𝘃𝗲𝗱 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀</u></b>\n"
+        "<b>Click on any account to view details:</b>"
         "</blockquote>",
         parse_mode=ParseMode.HTML,
         reply_markup=kb_accounts_list(phones)
@@ -44,10 +44,10 @@ async def cb_account_detail(client: Client, callback: CallbackQuery):
 
     await callback.message.edit_text(
         f"<blockquote>"
-        f"📱 <b><u>Account Details</u></b>\n\n"
-        f"📱 Number: `{acc['phone']}`\n"
-        f"🔑 2FA: {password_display}\n"
-        f"🔒 Session: Saved ✅"
+        f"📱 <u>𝗔𝗖𝗖𝗢𝗨𝗡𝗧 𝗗𝗘𝗧𝗔𝗜𝗟𝗦</u>\n"
+        f"<b>📱 Number:</b> {acc['phone']}\n"
+        f"<b>🔑 2FA:</b> {password_display}\n"
+        f"<b>🔒 Session: Saved ✅</b>"
         f"</blockquote>",
         parse_mode=ParseMode.HTML,
         reply_markup=kb_account_detail(phone)
@@ -66,8 +66,8 @@ async def cb_delete_account(client: Client, callback: CallbackQuery):
     if not phones:
         await callback.message.edit_text(
             "<blockquote>"
-            "📂 <b><u>Your Accounts</u></b>\n\n"
-            "❌ No account left."
+            "📂 <u>𝗬𝗼𝘂𝗿 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀</u>\n"
+            "<b>🚫 No account left.</b>"
             "</blockquote>",
             parse_mode=ParseMode.HTML,
             reply_markup=kb_main_menu()
@@ -75,8 +75,8 @@ async def cb_delete_account(client: Client, callback: CallbackQuery):
     else:
         await callback.message.edit_text(
             f"<blockquote>"
-            "📂 <b>Your Saved Accounts</b> ({len(phones)})\n\n"
-            "Click on any account to view details:"
+            "📂 <u>𝗬𝗼𝘂𝗿 𝗦𝗮𝘃𝗲𝗱 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀</u> ({len(phones)})\n"
+            "<b>Click on any account to view details:</b>"
             "</blockquote>",
             parse_mode=ParseMode.HTML,
             reply_markup=kb_accounts_list(phones)
