@@ -11,21 +11,27 @@ async def cb_target_menu(client: Client, callback: CallbackQuery):
 
     if target:
         text = (
+            "<blockquote>"
             "🎯 𝗖𝗨𝗥𝗥𝗘𝗡𝗧 𝗧𝗔𝗥𝗚𝗘𝗧\n\n"
-            f"👤 Name: {target.get('name', 'N/A')}\n"
-            f"🆔 User ID: `{target.get('id', 'N/A')}`\n"
-            f"🔗 Username: @{target.get('username', 'N/A')}\n\n"
-            "To set a new target, delete it first.."
+            f"<b>👤 Name:</b> {target.get('name', 'N/A')}\n"
+            f"<b>🆔 User ID:</b> {target.get('id', 'N/A')}\n"
+            f"<b>🔗 Username:</b> @{target.get('username', 'N/A')}\n\n"
+            "<b>To set a new target, delete it first..</b>"
+            "</blockquote>"
         )
     else:
         text = (
-            "🎯 **Target**\n\n"
-            "🚫 No target is set.\n"
-            "Set the target from the button below."
+            "<blockquote>"
+            "🎯 <u>𝗧𝗔𝗥𝗚𝗘𝗧</u>\n"
+            "<b>🚫 No target is set.</b>\n"
+            "<b>Set the target from the button below.</b>"
+            "</blockquote>"
         )
-
-    await callback.message.edit_text(text, reply_markup=kb_target_menu(bool(target)))
-
+        await callback.message.edit_text(
+            text,
+            parse_mode=ParseMode.HTML,
+            reply_markup=kb_target_menu(bool(target))
+        )
 
 async def cb_set_target(client: Client, callback: CallbackQuery):
     uid = callback.from_user.id
