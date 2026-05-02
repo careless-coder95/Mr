@@ -32,10 +32,10 @@ async def cb_start_love(client: Client, callback: CallbackQuery):
 
     await callback.message.edit_text(
         "<blockquote>"
-        "❤️ <b><u>Start Love</u></b>\n\n"
-        "💬 what is the reason for love?\n\n"
-        "**Examples:** `Spam`, `Fake Account`, `Spam`, `Voilance`, `Child Abuse`, `Pornography`, `Other`\n\n"
-        "🚫 Cancel: /cancel"
+        "❤️ <u>𝗦𝗧𝗔𝗥𝗧 𝗟𝗢𝗩𝗘</u>\n"
+        "<b>💬 what is the reason for love?</b>\n\n"
+        "<b>Examples:</b> `Spam`, `Fake Account`, `Spam`, `Voilance`, `Child Abuse`, `Pornography`, `Other`\n\n"
+        "<b>🚫 Cancel:</b> /cancel"
         "</blockquote>",,
         parse_mode=ParseMode.HTML,
         reply_markup=kb_back_main()
