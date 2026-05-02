@@ -6,7 +6,7 @@ from database.db import save_target, get_target, delete_target
 from pyrogram.enums import ParseMode
 
 async def cb_target_menu(client: Client, callback: CallbackQuery):
-    target = get_target()
+    target = get_target(uid)
     clear_state(callback.from_user.id)
 
     if target:
@@ -87,7 +87,7 @@ async def cb_save_target(client: Client, callback: CallbackQuery):
         return
 
     info = state["data"]["target_info"]
-    save_target(info)
+    save_target(uid, info)
     clear_state(uid)
 
     await callback.answer("✅ Target saved!", show_alert=True)
@@ -104,7 +104,7 @@ async def cb_save_target(client: Client, callback: CallbackQuery):
 
 
 async def cb_delete_target(client: Client, callback: CallbackQuery):
-    delete_target()
+    delete_target(uid)
     await callback.answer("🗑 Target deleted!", show_alert=True)
     await callback.message.edit_text(
         "🎯 **Target**\n\n🚫 No target is set.\nSet target using the button below.",
