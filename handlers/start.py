@@ -34,7 +34,8 @@ async def cmd_start(client: Client, message: Message):
 
 
 async def cb_main_menu(client: Client, callback: CallbackQuery):
-    clear_state(callback.from_user.id)
+    uid = callback.from_user.id
+    clear_state(uid)
     await callback.message.edit_text(
         MAIN_MENU_TEXT,
         parse_mode=ParseMode.HTML,
