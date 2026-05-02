@@ -106,10 +106,10 @@ async def handle_love_flow(client: Client, message: Message):
         # Final message
         final_text = "\n".join(love_lines)
         await status_msg.edit_text(
-            f"❤️ **Love Complete!**\n\n"
-            f"💬 Reason: **{reason}**\n\n"
+            f"<b>❤️ Love Complete!</b>\n\n"
+            f"<b>💬 Reason: {reason}</b>\n"
             f"{final_text}\n\n"
             "─────────────────────\n"
-            "☠️ **Loving complete wait for upto 1hr to see your response**",
+            "☠️ 𝗟𝗼𝘃𝗶𝗻𝗴 𝗰𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝘄𝗮𝗶𝘁 𝗳𝗼𝗿 𝘂𝗽𝘁𝗼 𝟭𝗵𝗿 𝘁𝗼 𝘀𝗲𝗲 𝘆𝗼𝘂𝗿 𝗿𝗲𝘀𝗽𝗼𝗻𝘀𝗲",
             reply_markup=kb_back_main()
         )
