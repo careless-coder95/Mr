@@ -3,6 +3,8 @@ from pyrogram.types import Message, CallbackQuery
 from utils.keyboards import kb_start, kb_main_menu
 from utils.state import clear_state
 from pyrogram.enums import ParseMode
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InputMediaPhoto
 
 WELCOME_TEXT = """
 <blockquote expandable>⚖️<u>𝗞𝗔𝗥𝗠𝗔 𝗠𝗔𝗦𝗦 𝗥𝗘𝗣𝗢𝗥𝗧𝗘𝗥</u>⚖️</blockquote>
@@ -72,3 +74,9 @@ async def cb_back_to_start(client: Client, callback: CallbackQuery):
         ),
         reply_markup=kb_start()
     )
+
+
+def kb_setup_guide():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 𝗕𝗔𝗖𝗞", callback_data="back_to_start")],
+    ])
