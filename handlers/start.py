@@ -38,3 +38,22 @@ async def cb_main_menu(client: Client, callback: CallbackQuery):
         parse_mode=ParseMode.HTML,
         reply_markup=kb_main_menu()
     )
+
+
+SETUP_GUIDE_TEXT = """
+Yahan apna setup guide text likho...
+
+Jo bhi text dena chahte ho woh yahan paste karo.
+"""
+
+async def cb_setup_guide(client: Client, callback: CallbackQuery):
+    await callback.message.edit_text(
+        SETUP_GUIDE_TEXT,
+        reply_markup=kb_setup_guide()
+    )
+
+async def cb_back_to_start(client: Client, callback: CallbackQuery):
+    await callback.message.edit_text(
+        WELCOME_TEXT,
+        reply_markup=kb_start()
+    )
