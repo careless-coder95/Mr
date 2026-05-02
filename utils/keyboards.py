@@ -5,7 +5,7 @@ from database.db import count_accounts
 def kb_start():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("🚀 𝗦𝗧𝗔𝗥𝗧 𝗬𝗢𝗨𝗥 𝗦𝗬𝗦𝗧𝗘𝗠 🚀", callback_data="main_menu")],
-        [InlineKeyboardButton("📖 Setup Guide", callback_data="setup_guide")],
+        [InlineKeyboardButton("📖 𝗦𝗘𝗧𝗨𝗣 𝗚𝗨𝗜𝗗𝗘 📖", callback_data="setup_guide")],
     ])
 
 
