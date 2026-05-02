@@ -9,8 +9,8 @@ def kb_start():
     ])
 
 
-def kb_main_menu():
-    count = count_accounts()
+def kb_main_menu(user_id: int):
+    count = count_accounts(user_id)
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("✙ 𝗔𝗗𝗗 𝗔𝗖𝗖𝗢𝗨𝗡𝗧𝗦  ✙", callback_data="add_account")],
         [InlineKeyboardButton(f"📂 𝗔𝗖𝗖𝗢𝗨𝗡𝗧𝗦  [{count}] 📂", callback_data="list_accounts")],
