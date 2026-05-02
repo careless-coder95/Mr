@@ -21,10 +21,10 @@ async def cb_add_account(client: Client, callback: CallbackQuery):
     set_state(uid, "awaiting_phone")
     await callback.message.edit_text(
         "<blockquote>"
-        "📱 **Enter the phone number**\n\n"
-        "Write with country code:\n"
-        "Example: `+919XXXXXXXXX`\n\n"
-        "🚫 To cancel, write /cancel."
+        "<b>📱 Enter the phone number</b>\n"
+        "<b>Write with country code:</b>\n"
+        "<b>Example:</b> `+919XXXXXXXXX`\n\n"
+        "<b>🚫 To cancel, write /cancel.</b>"
         "</blockquote>",
         parse_mode=ParseMode.HTML,
         reply_markup=kb_back_main()
@@ -47,7 +47,7 @@ async def handle_add_account_flow(client: Client, message: Message):
             await message.reply("⚠️ Phone number should start with `+`.\nExample: `+919XXXXXXXXX`")
             return
 
-        await message.reply("⏳ I am sending OTP...")
+        await message.reply("⏳ Sending OTP...")
 
         api_id = int(os.getenv("API_ID"))
         api_hash = os.getenv("API_HASH")
@@ -70,10 +70,10 @@ async def handle_add_account_flow(client: Client, message: Message):
                 "phone_code_hash": sent.phone_code_hash
             })
             await message.reply(
-                "🔐 **Enter OTP**\n\n"
-                "You have received an OTP on your Telegram..\n"
-                "Wow, type it here:\n\n"
-                "🚫 Cancel: /cancel"
+                "🔐 𝗘𝗡𝗧𝗘𝗥 𝗢𝗧𝗣\n"
+                "<b>You have received an OTP on your Telegram..</b>\n"
+                "<code>0 0 0 0 0</code>, <b>type it here:</b>\n\n"
+                "<b>🚫 Cancel:</b> /cancel"
             )
         except PhoneNumberInvalid:
             await temp_client.disconnect()
@@ -111,9 +111,9 @@ async def handle_add_account_flow(client: Client, message: Message):
                 "phone_code_hash": phone_code_hash
             })
             await message.reply(
-                "🔑 **Enter 2FA Password**\n\n"
-                "2-step verification is enabled on your account.\n"
-                "🚫 Cancel: /cancel"
+                "🔑 𝗘𝗡𝗧𝗘𝗥 𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗 \n"
+                "<b>2-step verification is enabled on your account.</b>\n"
+                "<b>🚫 Cancel:</b> /cancel"
             )
         except PhoneCodeInvalid:
             await message.reply("🚫 Wrong OTP. Try Again.")
@@ -165,9 +165,9 @@ async def _finish_login(
 
         await message.reply(
             "<blockquote>"
-            "✅ <b>Account Successfully Saved!</b>\n\n"
-            f"📱 Number: `{phone}`\n"
-            "🔒 Session securely stored locally."
+            "✅ <u>𝗔𝗖𝗖𝗢𝗨𝗡𝗧 𝗦𝗔𝗩𝗘𝗗</u>\n"
+            f"<b>📱 Number:</b> {phone}\n"
+            "<b>🔒 Session securely stored locally.</b>"
             "</blockquote>",
             parse_mode=ParseMode.HTML,
             reply_markup=kb_after_add()
