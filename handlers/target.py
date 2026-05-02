@@ -22,7 +22,7 @@ async def cb_target_menu(client: Client, callback: CallbackQuery):
     else:
         text = (
             "<blockquote>"
-            "🎯 <u>𝗧𝗔𝗥𝗚𝗘𝗧</u>\n"
+            "🎯 <u>𝗧𝗔𝗥𝗚𝗘𝗧</u>\n\n"
             "<b>🚫 No target is set.</b>\n"
             "<b>Set the target from the button below.</b>"
             "</blockquote>"
