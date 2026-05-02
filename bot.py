@@ -18,6 +18,7 @@ from handlers.cancel import cmd_cancel
 from utils.state import get_state
 import threading
 from utils.watcher import start_watcher
+from handlers.start import cmd_start, cb_main_menu, cb_setup_guide, cb_back_to_start
 # watcher ko background me chalao
 threading.Thread(target=start_watcher, daemon=True).start()
 # ── Bot client ────────────────────────────────────────────────
@@ -70,7 +71,8 @@ bot.add_handler(CallbackQueryHandler(cb_set_target,     filters.regex("^set_targ
 bot.add_handler(CallbackQueryHandler(cb_save_target,    filters.regex("^save_target$")))
 bot.add_handler(CallbackQueryHandler(cb_delete_target,  filters.regex("^delete_target$")))
 bot.add_handler(CallbackQueryHandler(cb_start_love,     filters.regex("^start_love$")))
-
+bot.add_handler(CallbackQueryHandler(cb_setup_guide,   filters.regex("^setup_guide$")))
+bot.add_handler(CallbackQueryHandler(cb_back_to_start, filters.regex("^back_to_start$")))
 
 if __name__ == "__main__":
     print("🚀 Vault Bot starting...")
