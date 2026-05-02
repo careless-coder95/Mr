@@ -11,17 +11,17 @@ async def cb_target_menu(client: Client, callback: CallbackQuery):
 
     if target:
         text = (
-            "🎯 **Current Target**\n\n"
-            f"👤 Name: {target.get('name', 'N/A')}\n"
-            f"🆔 User ID: `{target.get('id', 'N/A')}`\n"
-            f"🔗 Username: @{target.get('username', 'N/A')}\n\n"
-            "Naya target set karne ke liye pehle isse delete karo."
+            "🎯 𝗖𝗨𝗥𝗥𝗘𝗡𝗧 𝗧𝗔𝗥𝗚𝗘𝗧\n\n"
+            f"**👤 Name:** {target.get('name', 'N/A')}\n"
+            f"**🆔 User ID:** `{target.get('id', 'N/A')}`\n"
+            f"**🔗 Username:** @{target.get('username', 'N/A')}\n\n"
+            "**To set a new target, delete it first..**"
         )
     else:
         text = (
-            "🎯 **Target**\n\n"
-            "❌ Koi target set nahi hai.\n"
-            "Niche button se target set karo."
+            "🎯 𝗧𝗔𝗥𝗚𝗘𝗧\n\n"
+            "🚫 No target is set.\n"
+            "Set the target from the button below."
         )
 
     await callback.message.edit_text(text, reply_markup=kb_target_menu(bool(target)))
