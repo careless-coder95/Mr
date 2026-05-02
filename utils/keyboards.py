@@ -60,3 +60,8 @@ def kb_target_save():
         [InlineKeyboardButton("💾 𝗦𝗔𝗩𝗘", callback_data="save_target")],
         [InlineKeyboardButton("🔙 𝗕𝗔𝗖𝗞 ", callback_data="target_menu")],
     ])
+
+def kb_setup_guide():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 𝗕𝗔𝗖𝗞", callback_data="back_to_start")],
+    ])
