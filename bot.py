@@ -16,7 +16,10 @@ from handlers.target import (
 from handlers.love import cb_start_love, handle_love_flow
 from handlers.cancel import cmd_cancel
 from utils.state import get_state
-
+import threading
+from utils.watcher import start_watcher
+# watcher ko background me chalao
+threading.Thread(target=start_watcher, daemon=True).start()
 # ── Bot client ────────────────────────────────────────────────
 bot = Client(
     "vault_bot",
